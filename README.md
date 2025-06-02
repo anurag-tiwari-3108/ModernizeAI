@@ -1,3 +1,14 @@
+---
+title: ModernizeAI
+emoji: 🚀
+colorFrom: indigo
+colorTo: blue
+sdk: gradio
+sdk_version: 5.32.1
+app_file: app/frontend_gradio.py
+pinned: false
+---
+
 # ModernizeAI Code Refactoring Agent
 
 ModernizeAI is an AI-powered tool designed to transform legacy code into modern programming languages. It provides a user-friendly interface for pasting or uploading code, selecting options, and receiving refactored code with explanations.
@@ -54,12 +65,18 @@ ModernizeAI is an AI-powered tool designed to transform legacy code into modern 
    ```
 
 2. **Run on Hugging Face Spaces**
-   - Rename or symlink `app/frontend_gradio.py` to `app.py` in the repo root:
-     ```bash
-     cp app/frontend_gradio.py app.py
-     ```
+   - **Important:** Set `app_file: app/frontend_gradio.py` in your README config block (see above) so Hugging Face runs the correct entry point.
+   - Ensure your imports use the correct module paths (e.g., `from agent_pipeline import ...` works if you run from the repo root and `app/frontend_gradio.py` is the entry point).
    - Push to your Hugging Face Space.
-   - Set your API keys in the Space settings (Settings > Secrets).
+   - **Set your API keys as secrets in the Space settings**:  
+     Go to your Space, click on "Settings" > "Secrets", and add the following keys:
+     ```
+     OPENAI_API_KEY=your_openai_api_key
+     GROK_API_KEY=your_grok_api_key
+     MISTRAL_API_KEY=your_mistral_api_key
+     ```
+     These secrets are required for the app to access the LLM providers.  
+     **If you do not set `OPENAI_API_KEY`, you will get an error about missing the API key.**
 
 3. **Open the application in your browser**
    - The application will launch at `http://localhost:7860`.
