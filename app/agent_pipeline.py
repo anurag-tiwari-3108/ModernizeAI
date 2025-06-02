@@ -2,10 +2,7 @@ from typing import Dict, Any
 from pygments.lexers import guess_lexer
 from pygments.util import ClassNotFound
 import os
-from dotenv import load_dotenv
 import requests
-
-load_dotenv()
 
 # Expanded mapping for more legacy languages
 LEXER_LANGUAGE_MAP = {
@@ -194,13 +191,13 @@ class CodeCompanionAgent:
 def get_llm_client(provider=None):
     if provider is None or provider == "OpenAI":
         import openai
-        openai.api_key = os.getenv("OPENAI_API_KEY")
+        openai.api_key = os.environ.get("OPENAI_API_KEY")
         return OpenAILLMClient(openai)
     elif provider == "Grok":
-        grok_api_key = os.getenv("GROK_API_KEY")
+        grok_api_key = os.environ.get("GROK_API_KEY")
         return GrokLLMClient(grok_api_key)
     elif provider == "Mistral":
-        mistral_api_key = os.getenv("MISTRAL_API_KEY")
+        mistral_api_key = os.environ.get("MISTRAL_API_KEY")
         return MistralLLMClient(mistral_api_key)
     else:
         raise ValueError("Unknown LLM provider")

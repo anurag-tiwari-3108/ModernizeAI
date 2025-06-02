@@ -7,6 +7,9 @@ install:
 run:
 	. .venv/bin/activate && python3 app/frontend_gradio.py
 
+run-hf:
+	. .venv/bin/activate && python3 app.py
+
 test:
 	. .venv/bin/activate && python3 -m unittest discover -s app/tests
 

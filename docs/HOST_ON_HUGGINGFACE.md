@@ -8,7 +8,7 @@ You can deploy your Gradio app on [Hugging Face Spaces](https://huggingface.co/s
 - Your main UI file should be named `app.py` or specify it in `README.md` (Hugging Face looks for `app.py` by default).
 - Move or copy your main Gradio script to `app.py`:
   ```bash
-  cp ui/frontend_gradio.py app.py
+  cp app/frontend_gradio.py app.py
   ```
 
 ## 2. Add a `requirements.txt`

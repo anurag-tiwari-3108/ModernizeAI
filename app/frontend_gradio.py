@@ -3,10 +3,10 @@ from agent_pipeline import CodeCompanionAgent, OpenAILLMClient, get_llm_client
 import openai
 import os
 
-# API Key Management
-from dotenv import load_dotenv
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# Remove dotenv usage for Hugging Face Spaces compatibility
+# from dotenv import load_dotenv
+# load_dotenv()
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def run_agent(code, file, explain, target_lang, provider):
     # Prefer file input if provided
